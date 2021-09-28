@@ -1,4 +1,5 @@
 using System;
+using System.IO;
 using System.Xml;
 using FluentAssertions;
 using Xunit;
@@ -42,6 +43,16 @@ namespace Mapspiral.Kata.Tests
             var sut = new StringCalculator();
             var result = sut.Add(inputText);
             result.Should().Be(expectedValue);
+        }
+        
+        [Theory]
+        [InlineData("-1,2", "Negatives not allowed: -1")]
+        [InlineData("2,-4,3,-5", "Negatives not allowed: -4,-5")]
+        public void Should_HandleNegativeValues(string inputText, string errorMessage)
+        {
+            var sut = new StringCalculator();
+            var exception = Assert.Throws<InvalidDataException>(() => sut.Add(inputText));
+            exception.Message.Should().Be(errorMessage);
         }
     }
 }

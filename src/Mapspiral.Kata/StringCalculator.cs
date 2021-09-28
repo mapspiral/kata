@@ -27,7 +27,15 @@ namespace Mapspiral.Kata.Tests
                 ? parsedValue
                 : throw new InvalidDataException();
 
-            return inputText.Split(delimiter).Select(Parse).Sum();
+            var parsedValues = inputText.Split(delimiter).Select(Parse).ToArray();
+
+            var negativeValues = parsedValues.Where(v => v < 0);
+            if (negativeValues.Any())
+            {
+                throw new InvalidDataException($"Negatives not allowed: {string.Join(',', negativeValues)}");
+            }
+            
+            return parsedValues.Sum();
         }
     }
 }
