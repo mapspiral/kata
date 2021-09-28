@@ -1,2 +1,3 @@
-# kata-game-of-life
-My attempt at the Game of Life kata
+# General
+
+Repository for Kata attempts
