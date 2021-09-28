@@ -1,5 +1,6 @@
 using System;
 using System.IO;
+using System.Linq;
 
 namespace Mapspiral.Kata.Tests
 {
@@ -11,10 +12,12 @@ namespace Mapspiral.Kata.Tests
             {
                 return 0;
             }
-            
-            return int.TryParse(inputText, out var parsedValue)
+
+            static int Parse(string part) => int.TryParse(part, out var parsedValue)
                 ? parsedValue
                 : throw new InvalidDataException();
+
+            return inputText.Split(',').Select(Parse).Sum();
         }
     }
 }
