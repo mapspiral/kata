@@ -27,7 +27,7 @@ namespace Mapspiral.Kata.Tests
                 ? parsedValue
                 : throw new InvalidDataException();
 
-            var parsedValues = inputText.Split(delimiter).Select(Parse).ToArray();
+            var parsedValues = inputText.Split(delimiter).Select(Parse).Where(v => v <= 1000).ToArray();
 
             var negativeValues = parsedValues.Where(v => v < 0);
             if (negativeValues.Any())

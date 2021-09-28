@@ -54,5 +54,14 @@ namespace Mapspiral.Kata.Tests
             var exception = Assert.Throws<InvalidDataException>(() => sut.Add(inputText));
             exception.Message.Should().Be(errorMessage);
         }
+        
+        [Theory]
+        [InlineData("1001,2", 2)]
+        public void Should_IgnoreValuesGreaterThan1000(string inputText, int expectedValue)
+        {
+            var sut = new StringCalculator();
+            var result = sut.Add(inputText);
+            result.Should().Be(expectedValue);
+        }
     }
 }
