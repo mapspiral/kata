@@ -23,6 +23,10 @@ namespace Mapspiral.Kata.Tests
         [InlineData("10,1", 11)]
         [InlineData("3,5", 8)]
         [InlineData("1,2,3,4,5,6,7,8,9,10", 55)]
+        [InlineData("\n1,2", 3)]
+        [InlineData("1,\n2", 3)]
+        [InlineData("1,2\n", 3)]
+        [InlineData("\n1,\n2\n", 3)]
         public void Should_Parse(string inputText, int expectedResult)
         {
             var sut = new StringCalculator();
