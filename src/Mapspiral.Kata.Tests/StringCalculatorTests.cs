@@ -33,5 +33,15 @@ namespace Mapspiral.Kata.Tests
             var result = sut.Add(inputText);
             result.Should().Be(expectedResult);
         }
+
+        [Fact]
+        public void Should_HandleCustomDelimiter()
+        {
+            var inputText = "//;\n1;2";
+            var expectedValue = 3;
+            var sut = new StringCalculator();
+            var result = sut.Add(inputText);
+            result.Should().Be(expectedValue);
+        }
     }
 }

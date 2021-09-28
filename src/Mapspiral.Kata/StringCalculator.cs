@@ -8,6 +8,16 @@ namespace Mapspiral.Kata.Tests
     {
         public int Add(string inputText)
         {
+            var delimiter = ",";
+            if (inputText.StartsWith("//"))
+            {
+                var parts = inputText.Split(Environment.NewLine);
+                delimiter = parts.Length > 1 
+                    ? parts[0][2..]
+                    : throw new InvalidDataException();
+                inputText = inputText.Substring(inputText.IndexOf(Environment.NewLine, StringComparison.Ordinal));
+            }
+
             if (inputText == string.Empty)
             {
                 return 0;
@@ -17,7 +27,7 @@ namespace Mapspiral.Kata.Tests
                 ? parsedValue
                 : throw new InvalidDataException();
 
-            return inputText.Split(',').Select(Parse).Sum();
+            return inputText.Split(delimiter).Select(Parse).Sum();
         }
     }
 }
